@@ -1,0 +1,66 @@
+<form  (ngSubmit)="onSubmit(applicationFrm)"  [formGroup]="applicationFrm" class="application-form">
+  <h2 mat-dialog-title>{{data.modalTitle}}</h2>  
+  <mat-dialog-content>
+      <div>
+          <mat-form-field class="control-field">
+          <mat-label>Client ID</mat-label>
+          <input matInput placeholder="Client ID" formControlName="clientID">        
+          <mat-error *ngIf="formErrors.clientID">
+            {{ formErrors.clientID }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+  <div>
+      <mat-form-field class="control-field">
+      <mat-label>Client Name</mat-label>
+      <input matInput placeholder="Client Name" formControlName="clientName">   
+      <mat-error *ngIf="formErrors.clientName">
+        {{ formErrors.clientName }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="control-field">
+      <mat-label>Client Uri</mat-label>
+      <input type="url" matInput placeholder="clientUri" formControlName="clientUri">
+      <mat-error *ngIf="formErrors.clientUri">
+        {{ formErrors.clientUri }}
+      </mat-error>
+    </mat-form-field>  
+  </div>
+  <div>
+  <mat-form-field class="control-field">
+      <mat-label>Secret</mat-label>
+      <input type="text" matInput placeholder="secret" formControlName="secret">
+      <mat-error *ngIf="formErrors.secret">
+        {{ formErrors.secret }}
+      </mat-error>
+    </mat-form-field> 
+  </div>   
+  <div>    
+    <mat-form-field class="control-field">
+        <mat-label>Redirect Uri</mat-label>
+        <input type="url" matInput placeholder="redirectUri" formControlName="redirectUri">
+        <mat-error *ngIf="formErrors.redirectUri">
+          {{ formErrors.redirectUri }}
+        </mat-error>
+      </mat-form-field>    
+    </div>  
+    <div>    
+        <mat-form-field class="control-field">
+            <mat-label>Post Logout Redirect Uri</mat-label>
+            <input type="url" matInput placeholder="postLogoutRedirectUri" formControlName="postLogoutRedirectUri">
+            <mat-error *ngIf="formErrors.postLogoutRedirectUri">
+              {{ formErrors.postLogoutRedirectUri }}
+            </mat-error>
+          </mat-form-field>    
+        </div> 
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div>
+  
+    <button type="button" mat-raised-button color="warn" (click)="dialogRef.close()">Cancel</button>&nbsp;
+    <button type="submit" mat-raised-button color="primary" [disabled]="applicationFrm.invalid">{{data.modalBtnTitle}}</button>
+  </div>
+</mat-dialog-actions>
+  </form>

@@ -1,0 +1,53 @@
+<div class="spinner" *ngIf="loadingState; else applicationlist">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template class="applicationlist" #applicationlist>
+  <h2 style="text-align: center;">Application List</h2>
+  <div class="applicationlist-container mat-elevation-z8">
+    <div>
+      <button title="Create" mat-raised-button color="accent" (click)="addApplication()">Create</button>
+    </div>
+    <table mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="clientID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Client ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.clientID}} </td>
+          </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cient Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="clientUri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Uri </th>
+        <td mat-cell *matCellDef="let element"> {{element.clientUri}} </td>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="redirectUri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Redirect Uri </th>
+        <td mat-cell *matCellDef="let element"> {{element.redirectUri}} </td>
+      </ng-container>
+
+      <!-- Birth Column -->
+      <ng-container matColumnDef="postLogoutRedirectUri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Post Logout Redirect Uri </th>
+        <td mat-cell *matCellDef="let element"> {{element.postLogoutRedirectUri}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button title="Edit" mat-raised-button color="primary" (click)="editApplication(element.clientID)">Edit</button>
+          <button title="Delete" mat-raised-button color="warn" (click)="deleteApplication(element.clientID)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</ng-template>
